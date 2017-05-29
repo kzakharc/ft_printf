@@ -1,0 +1,107 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   for_print.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/05 19:44:53 by kzakharc          #+#    #+#             */
+/*   Updated: 2017/05/14 16:45:48 by kzakharc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+#include <stdlib.h>
+#include "libft/libft.h"
+
+void	hyp_print(t_uck *s, const char **r_f)
+{
+	(s->has == 1) ? if_hash(s, &(*r_f), 0) : 0;
+	(s->plus == 1) ? if_plus(s, &(*r_f), 0) : 0;
+	((s->space == 1) && (s->plus != 1)) ? if_space(s, &(*r_f), 0) : 0;
+	((**r_f == 'c') || (**r_f == 'C')) ? (ft_putchar(s->c)) : ft_putstr(s->str);
+	s->count_1 += ft_strlen(s->str);
+	s->count += ft_strlen(s->str);
+	s->i_w -= s->count_1;
+	if (s->ze == 1)
+	{
+		while (s->i_w)
+		{
+			ft_putchar('0');
+			s->i_w -= 1;
+			s->count += 1;
+		}
+	}
+	else
+	{
+		while (s->i_w)
+		{
+			ft_putchar(' ');
+			s->i_w -= 1;
+			s->count += 1;
+		}
+	}
+}
+
+void	without_hyp_print(t_uck *s, const char **r)
+{
+	s->count += ft_strlen(s->str);
+	s->count_1 += ft_strlen(s->str);
+	((s->str[0] == '\0') && (**r == 'c')) ? (s->count_1 += 1) : 0;
+	s->i_w -= s->count_1;
+	if ((((s->prec == 1) || (s->ze == 1)) && (s->width == 1) && (**r != 'p')) ||
+			((**r == 'p') && (s->prec == 0) && (s->width == 1) && s->hyphen))
+		(s->has == 1) ? if_hash(s, &(*r), 0) : 0;
+	((s->plus == 1) && (s->ze == 1)) ? if_plus(s, &(*r), 0) : 0;
+	((s->space == 1) && (s->plus != 1)) ? if_space(s, &(*r), 0) : 0;
+	while (s->i_w)
+	{
+		(s->ze == 1) ? (ft_putchar('0')) : (ft_putchar(' '));
+		s->i_w -= 1;
+		s->count += 1;
+	}
+	((s->plus == 1) && (s->ze == 0)) ? if_plus(s, &(*r), 0) : 0;
+	if (((s->prec == 0) || (**r == 'p')) && (s->has == 1))
+		if_hash(s, &(*r), 0);
+	if ((s->str[0] == '\0') && (**r == 'c'))
+	{
+		s->count += 1;
+		ft_putchar('\0');
+	}
+	else
+		ft_putstr(s->str);
+}
+
+void	print(t_uck *s, const char **r_f)
+{
+	(s->hyphen == 1) ? (s->ze = 0) : 0;
+	(s->has == 1) ? if_hash(s, &(*r_f), 1) : 0;
+	(s->plus == 1) ? if_plus(s, &(*r_f), 1) : 0;
+	((s->space == 1) && (s->plus != 1)) ? if_space(s, &(*r_f), 1) : 0;
+	s->count += ft_strlen(s->str);
+	(s->has == 1) ? if_hash(s, &(*r_f), 0) : 0;
+	(s->plus == 1) ? if_plus(s, &(*r_f), 0) : 0;
+	((s->space == 1) && (s->plus != 1)) ? if_space(s, &(*r_f), 0) : 0;
+	if ((s->str[0] == '\0') && ((**r_f == 'c') || (**r_f == 'C')))
+	{
+		s->count += 1;
+		ft_putchar('\0');
+	}
+	else
+		ft_putstr(s->str);
+	((**r_f != 's') && (**r_f != 'S')) ? free(s->str) : 0;
+	s->str_clear = 1;
+}
+
+void	p_t(t_uck *s, const char **r_f)
+{
+	s->space = 0;
+	s->str = (char *)malloc(sizeof(char) * 2);
+	s->str[0] = **r_f;
+	s->str[1] = '\0';
+	if (s->str[0] == '0')
+		ft_strclr(s->str);
+	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
+	s->str_clear == 1 ? 0 : free(s->str);
+	(*r_f)++;
+}
