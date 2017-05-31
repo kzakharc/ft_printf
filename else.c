@@ -18,12 +18,16 @@ void	print_bs(va_list ap, t_uck *s, const char **r_f)
 {
 	int *q;
 	int dummy;
+	char *d;
 
 	s->w = 0;
 	dummy = 0;
 	s->plus = 0;
 	s->space = 0;
 	s->has = 0;
+	d = ft_strnew(0);
+	s->str = d;
+	free(d);
 	q = (va_arg(ap, int *));
 	if ((s->prec == 1) && (s->i_p >= 0))
 	{
@@ -47,7 +51,7 @@ void	print_bs(va_list ap, t_uck *s, const char **r_f)
 			q++;
 		}
 	}
-	else
+	else if ((q != NULL))
 	{
 		while (*q)
 		{
@@ -60,7 +64,7 @@ void	print_bs(va_list ap, t_uck *s, const char **r_f)
 			q++;
 		}
 	}
-	(s->str == NULL) ? (s->str = "(null)") : 0;
+	((s->str == NULL) || (q == NULL)) ? (s->str = "(null)") : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
 }
 

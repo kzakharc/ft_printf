@@ -31,6 +31,11 @@ void	check_tp(const char **r_f, va_list ap, t_uck *s)
 		s->space = 0;
 		s->plus = 0;
 		s->has = 1;
+		if ((s->ze == 1) && (s->width == 1))
+		{
+			if_hash(s, &(*r_f), 1);
+			if_hash(s, &(*r_f), 0);
+		}
 		s->l = 1;
 		print_x(ap, s, &(*r_f));
 	}
