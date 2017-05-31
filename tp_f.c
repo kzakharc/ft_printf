@@ -115,7 +115,7 @@ void	print_bo(va_list ap, t_uck *s, const char **r_f)
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
 }
 
-void	print_s_bs(va_list ap, t_uck *s, const char **r_f)
+void	print_s(va_list ap, t_uck *s, const char **r_f)
 {
 	s->plus = 0;
 	s->space = 0;

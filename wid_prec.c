@@ -45,18 +45,18 @@ char	*change_for_prec(t_uck *s, int f)
 
 char	*change_for_prec_s(t_uck *s)
 {
-	int i;
+	int c;
 
-	i = 0;
+	c = 0;
 	s->str_p = (char *)malloc(sizeof(char) * (s->i_p + 1));
-	if (s->i_p < (int)ft_strlen(s->str))
+	if (s->i_p < (int) ft_strlen(s->str))
 	{
-		while (i < s->i_p)
+		while (c < s->i_p)
 		{
-			s->str_p[i] = s->str[i];
-			i++;
+			s->str_p[c] = s->str[c];
+			c++;
 		}
-		s->str_p[i] = '\0';
+		s->str_p[c] = '\0';
 		return (s->str_p);
 	}
 	else

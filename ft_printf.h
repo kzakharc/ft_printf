@@ -46,6 +46,7 @@ typedef struct		s_uck
 	int				k;
 	int				i;
 	int				str_clear;
+	int             w;
 	char			*d;
 }					t_uck;
 
@@ -56,7 +57,8 @@ void				print_d_i(va_list ap, t_uck *s, const char **r_f);
 void				print_bd(va_list ap, t_uck *s, const char **r_f);
 void				print_o(va_list ap, t_uck *s, const char **r_f);
 void				print_bo(va_list ap, t_uck *s, const char **r_f);
-void				print_s_bs(va_list ap, t_uck *s, const char **r_f);
+void				print_s(va_list ap, t_uck *s, const char **r_f);
+void				print_bs(va_list ap, t_uck *s, const char **r_f);
 void				print_x(va_list ap, t_uck *s, const char **r_f);
 void				print_bx(va_list ap, t_uck *s, const char **r_f);
 void				print_c(va_list ap, t_uck *s, const char **r_f);
@@ -78,5 +80,9 @@ void				p_t(t_uck *s, const char **r_f);
 void				find_dominant(t_uck *s);
 void				find_little_dominant(t_uck *s);
 void				for_d(t_uck *s, const char **r_f);
+char                *get_memory(int size, t_uck *s, int i);
+void                if_one(t_uck *s, int *q);
+void                if_two(t_uck *s, int *q, int dummy);
+void                if_three(t_uck *s, int *q, int dummy);
 
 #endif

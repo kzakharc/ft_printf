@@ -63,3 +63,16 @@ void	if_space(t_uck *s, const char **r_f, int i)
 	if (i == 1)
 		s->count_1 += 1;
 }
+
+char    *get_memory(int size, t_uck *s, int i)
+{
+	char *tmp;
+	char *dst;
+
+	tmp = malloc(sizeof(int) * (size + 1));
+	dst = tmp;
+	if (i != 0)
+		dst = ft_strcpy(dst, s->str);
+	free(tmp);
+	return (dst);
+}

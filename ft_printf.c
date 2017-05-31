@@ -23,7 +23,8 @@ void	check_tp(const char **r_f, va_list ap, t_uck *s)
 	(**r_f == 'o') ? (print_o(ap, s, &(*r_f))) : 0;
 	(**r_f == 'O') ? (print_bo(ap, s, &(*r_f))) : 0;
 	(**r_f == 'c' || **r_f == 'C') ? (print_c(ap, s, &(*r_f))) : 0;
-	((**r_f == 's') || (**r_f == 'S')) ? (print_s_bs(ap, s, &(*r_f))) : 0;
+	(**r_f == 's') ? (print_s(ap, s, &(*r_f))) : 0;
+	(**r_f == 'S') ? (print_bs(ap, s, &(*r_f))) : 0;
 	(**r_f == 'X') ? (print_bx(ap, s, &(*r_f))) : 0;
 	if (**r_f == 'p')
 	{
