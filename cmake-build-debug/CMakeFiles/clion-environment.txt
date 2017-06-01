@@ -1,0 +1,1 @@
+CMake: 3.6.2@/nfs/2016/k/kzakharc/Applications/CLion.app/Contents/bin/cmake/bin/cmake

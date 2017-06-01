@@ -20,8 +20,8 @@ void	hyp_print(t_uck *s, const char **r_f)
 	(s->plus == 1) ? if_plus(s, &(*r_f), 0) : 0;
 	((s->space == 1) && (s->plus != 1)) ? if_space(s, &(*r_f), 0) : 0;
 	((**r_f == 'c') || (**r_f == 'C')) ? (ft_putchar(s->c)) : ft_putstr(s->str);
-	s->count_1 += ft_strlen(s->str);
-	s->count += ft_strlen(s->str);
+	s->count_1 += ((s->str[0] != '\0') || (**r_f == 's')) ? ft_strlen(s->str) : 1;
+	s->count += ((s->str[0] != '\0') || (**r_f == 's')) ? ft_strlen(s->str) : 1;
 	s->i_w -= s->count_1;
 	if (s->ze == 1)
 	{

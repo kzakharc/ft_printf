@@ -69,7 +69,7 @@ char    *get_memory(int size, t_uck *s, int i)
 	char *tmp;
 	char *dst;
 
-	tmp = malloc(sizeof(int) * (size + 1));
+	tmp = malloc(sizeof(char) * (size + 1));
 	dst = tmp;
 	if (i != 0)
 		dst = ft_strcpy(dst, s->str);

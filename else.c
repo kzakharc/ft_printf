@@ -20,6 +20,8 @@ void	pr_bs(va_list ap, t_uck *s, const char **r_f)
 	int dummy;
 	char *d;
 
+	if ((s->width == 1) && (s->i_w < s->i_p))
+		s->i_p = s->i_w;
 	s->w = 0;
 	dummy = 0;
 	s->plus = 0;
