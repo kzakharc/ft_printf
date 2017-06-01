@@ -45,7 +45,7 @@ void	check_tp(const char **r_f, va_list ap, t_uck *s)
 
 void	check_flags(const char **r_form, t_uck *s)
 {
-	if (ft_strchr(s->flag, **r_form))
+	if (ft_strchr(s->f, **r_form))
 	{
 		(**r_form == '-') ? (s->hyphen = 1) : 0;
 		(**r_form == '+') ? (s->plus = 1) : 0;
@@ -72,31 +72,31 @@ void	check_flags(const char **r_form, t_uck *s)
 	}
 }
 
-void	lets_go(const char *rf, va_list ap, t_uck *s)
+void	lets_go(const char *r, va_list ap, t_uck *s)
 {
-	while (*rf)
+	while (*r)
 	{
 		get_null(s);
-		while ((*rf != '%') && (*rf))
+		while ((*r != '%') && (*r))
 		{
-			ft_putchar(*rf);
+			ft_putchar(*r);
 			s->count++;
-			(*rf) ? (rf++) : 0;
+			(*r) ? (r++) : 0;
 		}
-		if (*rf == '%')
+		if (*r == '%')
 		{
-			rf++;
-			while (ft_strchr(s->flag, *rf) && *rf)
+			r++;
+			while (ft_strchr(s->f, *r) && *r)
 			{
-				if ((*rf >= 49 && *rf <= 57) || (*rf == '*'))
-					ch_w(&rf, ap, s);
-				if (*rf == '.')
-					ch_p(&rf, ap, s);
-				check_flags(&rf, s);
-				(ft_strchr(s->flag, *rf) && (*rf != '*')) ? (rf++) : 0;
+				if ((*r >= 49 && *r <= 57) || (*r == '*'))
+					ch_w(&r, ap, s);
+				if (*r == '.')
+					ch_p(&r, ap, s);
+				check_flags(&r, s);
+				(ft_strchr(s->f, *r) && (*r != '*') && (*r != '.')) ? (r++) : 0;
 			}
-			if (*rf)
-				ft_strchr(s->tp, *rf) ? (check_tp(&rf, ap, s)) : p_t(s, &rf);
+			if (*r)
+				ft_strchr(s->tp, *r) ? (check_tp(&r, ap, s)) : p_t(s, &r);
 		}
 	}
 }
@@ -106,7 +106,7 @@ int		ft_printf(const char *r_form, ...)
 	va_list	ap;
 	t_uck	s;
 
-	s.flag = "#0-+ hljz.*123456789";
+	s.f = "#0-+ hljz.*123456789";
 	s.tp = "sSpdDioOuUxXcC";
 	s.count = 0;
 	va_start(ap, r_form);

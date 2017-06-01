@@ -21,7 +21,7 @@
 
 typedef struct		s_uck
 {
-	char			*flag;
+	char			*f;
 	char			*tp;
 	int				count;
 	int				count_1;

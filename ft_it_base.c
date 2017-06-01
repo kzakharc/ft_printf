@@ -92,7 +92,7 @@ char			*i(uintmax_t value, int base, int flag)
 		else if (b > 9 && flag == 1)
 			b += 39;
 		str[a-- - 1] = (char)(b + 48);
-		value = value / base;
+		value /= base;
 	}
 	return (str);
 }
