@@ -14,6 +14,43 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
+void    get_big_s_no_prec(int *q, t_uck *s, int dummy)
+{
+	while (*q)
+	{
+		if ((*q >= 0) && (*q < 128))
+			if_one(s, q);
+		else if ((*q >= 256) && (*q < 2048))
+			if_two(s, q, dummy);
+		else if ((*q >= 2048) && (*q < 65536))
+			if_three(s, q, dummy);
+		q++;
+	}
+}
+
+void    get_big_s(int *q, t_uck *s, int dummy)
+{
+	while (*q)
+	{
+		if (((*q >= 0) && (*q < 128)) && (s->i_p >= 1))
+		{
+			if_one(s, q);
+			s->i_p--;
+		}
+		else if (((*q >= 256) && (*q < 2048)) && (s->i_p >= 2))
+		{
+			if_two(s, q, dummy);
+			s->i_p -= 2;
+		}
+		else if (((*q >= 2048) && (*q < 65536)) && (s->i_p >= 3))
+		{
+			if_three(s, q, dummy);
+			s->i_p -= 3;
+		}
+		q++;
+	}
+}
+
 void    if_one(t_uck *s, int *q)
 {
 	s->str = get_memory((1 + s->w), s, s->w);

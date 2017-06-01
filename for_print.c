@@ -89,7 +89,11 @@ void	print(t_uck *s, const char **r_f)
 	}
 	else
 		ft_putstr(s->str);
-	((**r_f != 's') && (**r_f != 'S')) ? free(s->str) : 0;
+	if ((**r_f == 'c') &&(s->l == 0))
+		free(s->str);
+	if ((**r_f != 's') && (**r_f != 'S') && (**r_f != 'C') &&
+			(**r_f != 'c'))
+		free(s->str);
 	s->str_clear = 1;
 }
 

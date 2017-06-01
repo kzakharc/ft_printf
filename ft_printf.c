@@ -14,33 +14,32 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-void	check_tp(const char **r_f, va_list ap, t_uck *s)
+void	check_tp(const char **r, va_list ap, t_uck *s)
 {
-	(**r_f == 'd' || **r_f == 'i') ? (print_d_i(ap, s, &(*r_f))) : 0;
-	(**r_f == 'D') ? (print_bd(ap, s, &(*r_f))) : 0;
-	(**r_f == 'u') ? (print_u(ap, s, &(*r_f))) : 0;
-	(**r_f == 'U') ? (print_bu(ap, s, &(*r_f))) : 0;
-	(**r_f == 'o') ? (print_o(ap, s, &(*r_f))) : 0;
-	(**r_f == 'O') ? (print_bo(ap, s, &(*r_f))) : 0;
-	(**r_f == 'c' || **r_f == 'C') ? (print_c(ap, s, &(*r_f))) : 0;
-	(**r_f == 's') ? (print_s(ap, s, &(*r_f))) : 0;
-	(**r_f == 'S') ? (print_bs(ap, s, &(*r_f))) : 0;
-	(**r_f == 'X') ? (print_bx(ap, s, &(*r_f))) : 0;
-	if (**r_f == 'p')
+	(**r == 'd' || **r == 'i') ? (print_d_i(ap, s, &(*r))) : 0;
+	(**r == 'D') ? (print_bd(ap, s, &(*r))) : 0;
+	(**r == 'u') ? (print_u(ap, s, &(*r))) : 0;
+	(**r == 'U') ? (print_bu(ap, s, &(*r))) : 0;
+	(**r == 'o') ? (print_o(ap, s, &(*r))) : 0;
+	(**r == 'O') ? (print_bo(ap, s, &(*r))) : 0;
+	((**r == 'c') && (s->l != 1)) ? (print_c(ap, s, &(*r))) : 0;
+	(((**r == 'c') && (s->l == 1)) || (**r == 'C')) ? (pr_bc(ap, s, &(*r))) : 0;
+	((**r == 's') && (s->l != 1)) ? (print_s(ap, s, &(*r))) : 0;
+	((**r == 'S') || ((**r == 's') && (s->l == 1))) ? (pr_bs(ap, s, &(*r))) : 0;
+	(**r == 'X') ? (print_bx(ap, s, &(*r))) : 0;
+	if (**r == 'p')
 	{
-		s->space = 0;
-		s->plus = 0;
 		s->has = 1;
 		if ((s->ze == 1) && (s->width == 1))
 		{
-			if_hash(s, &(*r_f), 1);
-			if_hash(s, &(*r_f), 0);
+			if_hash(s, &(*r), 1);
+			if_hash(s, &(*r), 0);
 		}
 		s->l = 1;
-		print_x(ap, s, &(*r_f));
+		print_x(ap, s, &(*r));
 	}
-	(**r_f == 'x') ? (print_x(ap, s, &(*r_f))) : 0;
-	(*r_f)++;
+	(**r == 'x') ? (print_x(ap, s, &(*r))) : 0;
+	(*r)++;
 }
 
 void	check_flags(const char **r_form, t_uck *s)

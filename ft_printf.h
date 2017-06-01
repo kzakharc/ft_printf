@@ -58,7 +58,7 @@ void				print_bd(va_list ap, t_uck *s, const char **r_f);
 void				print_o(va_list ap, t_uck *s, const char **r_f);
 void				print_bo(va_list ap, t_uck *s, const char **r_f);
 void				print_s(va_list ap, t_uck *s, const char **r_f);
-void				print_bs(va_list ap, t_uck *s, const char **r_f);
+void				pr_bs(va_list ap, t_uck *s, const char **r_f);
 void				print_x(va_list ap, t_uck *s, const char **r_f);
 void				print_bx(va_list ap, t_uck *s, const char **r_f);
 void				print_c(va_list ap, t_uck *s, const char **r_f);
@@ -84,5 +84,9 @@ char                *get_memory(int size, t_uck *s, int i);
 void                if_one(t_uck *s, int *q);
 void                if_two(t_uck *s, int *q, int dummy);
 void                if_three(t_uck *s, int *q, int dummy);
+void                get_big_s(int *q, t_uck *s, int dummy);
+void                get_big_s_no_prec(int *q, t_uck *s, int dummy);
+void	            pr_bc(va_list ap, t_uck *s, const char **r_f);
+void                get_big_c(int *q, t_uck *s, int dummy);
 
 #endif

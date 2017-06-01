@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-void	print_bs(va_list ap, t_uck *s, const char **r_f)
+void	pr_bs(va_list ap, t_uck *s, const char **r_f)
 {
 	int *q;
 	int dummy;
@@ -30,40 +30,9 @@ void	print_bs(va_list ap, t_uck *s, const char **r_f)
 	free(d);
 	q = (va_arg(ap, int *));
 	if ((s->prec == 1) && (s->i_p >= 0))
-	{
-		while (*q)
-		{
-			if (((*q >= 0) && (*q < 128)) && (s->i_p >= 1))
-			{
-				if_one(s, q);
-				s->i_p--;
-			}
-			if (((*q >= 256) && (*q < 2048)) && (s->i_p >= 2))
-			{
-				if_two(s, q, dummy);
-				s->i_p -= 2;
-			}
-			if (((*q >= 2048) && (*q < 65536)) && (s->i_p >= 3))
-			{
-				if_three(s, q, dummy);
-				s->i_p -= 3;
-			}
-			q++;
-		}
-	}
+		get_big_s(q, s, dummy);
 	else if ((q != NULL))
-	{
-		while (*q)
-		{
-			if ((*q >= 0) && (*q < 128))
-				if_one(s, q);
-			if ((*q >= 256) && (*q < 2048))
-				if_two(s, q, dummy);
-			if ((*q >= 2048) && (*q < 65536))
-				if_three(s, q, dummy);
-			q++;
-		}
-	}
+		get_big_s_no_prec(q, s, dummy);
 	((s->str == NULL) || (q == NULL)) ? (s->str = "(null)") : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
 }

@@ -14,7 +14,7 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 SRC = ft_printf.c tp_f.c tp_s.c ft_it_base.c wid_prec.c else.c for_print.c      \
-      all_for_flags.c for_bs.c
+      all_for_flags.c for_bs.c for_bc.c
 OBJECT = $(SRC:.c=.o)
 LIBFT = ./libft/ft_memset.o		\
 		./libft/ft_bzero.o		\
