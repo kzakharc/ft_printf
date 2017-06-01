@@ -38,7 +38,7 @@ void	print_bs(va_list ap, t_uck *s, const char **r_f)
 				if_one(s, q);
 				s->i_p--;
 			}
-			if (((*q >= 128) && (*q < 2048)) && (s->i_p >= 2))
+			if (((*q >= 256) && (*q < 2048)) && (s->i_p >= 2))
 			{
 				if_two(s, q, dummy);
 				s->i_p -= 2;
@@ -57,7 +57,7 @@ void	print_bs(va_list ap, t_uck *s, const char **r_f)
 		{
 			if ((*q >= 0) && (*q < 128))
 				if_one(s, q);
-			if ((*q >= 128) && (*q < 2048))
+			if ((*q >= 256) && (*q < 2048))
 				if_two(s, q, dummy);
 			if ((*q >= 2048) && (*q < 65536))
 				if_three(s, q, dummy);
