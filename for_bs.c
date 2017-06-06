@@ -65,6 +65,8 @@ void    get_big_s(int *q, t_uck *s, int dummy)
 			(s->width == 1) ? (s->i_w -= 3) : 0;
 			(s->width == 1) ? (s->count_1 -= 3) : 0;
 		}
+		else
+			s->i_p = 0;
 		q++;
 	}
 }

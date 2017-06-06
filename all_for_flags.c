@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-void	if_hash(t_uck *s, const char **r_f, int i)
+void    if_hash(t_uck *s, const char **r_f, int i)
 {
 	if (i == 0)
 	{

@@ -30,8 +30,12 @@ void	print_x(va_list ap, t_uck *s, const char **r_f)
 	}
 	else
 		s->str = i((unsigned int)va_arg(ap, int), 16, 1);
-	if ((s->str[0] == '0') && (**r_f != 'p'))
-		s->has = 0;
+	if ((s->str[0] == '0') && (**r_f != 'p') && !(s->has = 0))
+	{
+		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str[0] = '0';
+		s->str[1] = '\0';
+	}
 	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
 		ft_strclr(s->str);
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
@@ -56,8 +60,12 @@ void	print_bx(va_list ap, t_uck *s, const char **r_f)
 	}
 	else
 		s->str = i((unsigned int)va_arg(ap, int), 16, 2);
-	if (s->str[0] == '0')
-		s->has = 0;
+	if ((s->str[0] == '0') && !(s->has = 0))
+	{
+		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str[0] = '0';
+		s->str[1] = '\0';
+	}
 	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
 		ft_strclr(s->str);
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
@@ -83,6 +91,7 @@ void	print_u(va_list ap, t_uck *s, const char **r_f)
 {
 	s->plus = 0;
 	s->space = 0;
+	s->has = 0;
 	if ((s->hh == 1) || (s->h == 1) || (s->l == 1) || (s->ll == 1) ||
 			(s->j == 1) || (s->z == 1))
 	{
@@ -97,6 +106,12 @@ void	print_u(va_list ap, t_uck *s, const char **r_f)
 		s->str = i((unsigned int)va_arg(ap, int), 10, 0);
 	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
 		ft_strclr(s->str);
+	else if (s->str[0] == '0')
+	{
+		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str[0] = '0';
+		s->str[1] = '\0';
+	}
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
 	((s->prec == 1) && (s->i_p > 0)) ? (s->ze = 0) : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
@@ -107,6 +122,7 @@ void	print_bu(va_list ap, t_uck *s, const char **r_f)
 {
 	s->plus = 0;
 	s->space = 0;
+	s->has = 0;
 	if ((s->hh == 1) || (s->h == 1) || (s->l == 1) || (s->ll == 1) ||
 			(s->j == 1) || (s->z == 1))
 	{
@@ -121,6 +137,12 @@ void	print_bu(va_list ap, t_uck *s, const char **r_f)
 		s->str = i(va_arg(ap, unsigned long), 10, 0);
 	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
 		ft_strclr(s->str);
+	else if (s->str[0] == '0')
+	{
+		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str[0] = '0';
+		s->str[1] = '\0';
+	}
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
 	((s->prec == 1) && (s->i_p > 0)) ? (s->ze = 0) : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));

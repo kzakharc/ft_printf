@@ -20,8 +20,6 @@ void	pr_bs(va_list ap, t_uck *s, const char **r_f)
 	int dummy;
 	char *d;
 
-	if ((s->width == 1) && (s->i_w < s->i_p))
-		s->i_p = s->i_w;
 	s->w = 0;
 	dummy = 0;
 	s->plus = 0;
@@ -61,6 +59,8 @@ void	get_null(t_uck *s)
 	s->k = 0;
 	s->i = 0;
 	s->str_clear = 0;
+	s->how = 0;
+	s->low = 0;
 }
 
 void	find_dominant(t_uck *s)

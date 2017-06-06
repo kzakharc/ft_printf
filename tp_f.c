@@ -34,13 +34,14 @@ void	print_d_i(va_list ap, t_uck *s, const char **r_f)
 	{
 		(s->str = change_for_prec(s, 1));
 		s->prec = 0;
-		(s->i >= s->k) ? (s->str = ft_strjoin("-", s->str)) : 0;
+		(s->i >= 1) ? (s->str = ft_strjoin("-", s->str)) : 0;
 	}
 	for_d(s, &(*r_f));
 }
 
 void	print_bd(va_list ap, t_uck *s, const char **r_f)
 {
+	s->has = 0;
 	if ((s->hh == 1) || (s->h == 1) || (s->l == 1) || (s->ll == 1) ||
 			(s->j == 1) || (s->z == 1))
 	{
@@ -53,6 +54,8 @@ void	print_bd(va_list ap, t_uck *s, const char **r_f)
 	}
 	else
 		s->str = ft_b(va_arg(ap, long), 10);
+	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
+		ft_strclr(s->str);
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
 	((s->prec == 1) && (s->i_p > 0)) ? (s->ze = 0) : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
@@ -76,7 +79,12 @@ void	print_o(va_list ap, t_uck *s, const char **r_f)
 		s->str = i((unsigned int)va_arg(ap, int), 8, 0);
 	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
 		ft_strclr(s->str);
-	(s->str[0] == '0') ? (s->has = 0) : 0;
+	if ((s->str[0] == '0') && !(s->has = 0))
+	{
+		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str[0] = '0';
+		s->str[1] = '\0';
+	}
 	((s->prec == 1) && (s->i_p > 0)) ? (s->ze = 0) : 0;
 	if ((s->i_p <= (int)(ft_strlen(s->str) + 1)) && (s->has == 1))
 		(s->prec = 0);
@@ -105,12 +113,17 @@ void	print_bo(va_list ap, t_uck *s, const char **r_f)
 		s->str = i(va_arg(ap, unsigned long), 8, 0);
 	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
 		ft_strclr(s->str);
-	if (s->str[0] == '0')
-		s->has = 0;
+	if ((s->str[0] == '0') && !(s->has = 0))
+	{
+		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str[0] = '0';
+		s->str[1] = '\0';
+	}
 	((s->prec == 1) && (s->i_p > 0)) ? (s->ze = 0) : 0;
-	if (s->prec == 1)
-		if ((s->i_p <= (int)(ft_strlen(s->str) + 1)) ? 1 : (s->has = 0))
-			s->prec = 0;
+	if ((s->i_p <= (int)(ft_strlen(s->str) + 1)) && (s->has == 1))
+		(s->prec = 0);
+	else
+		(s->has = 0);
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
 }

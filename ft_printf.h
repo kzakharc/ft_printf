@@ -48,6 +48,8 @@ typedef struct		s_uck
 	int				str_clear;
 	int             w;
 	char			*d;
+	int             how;
+	int             low;
 }					t_uck;
 
 int					ft_printf(const char *r_form, ...);

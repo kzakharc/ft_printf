@@ -51,20 +51,30 @@ void	check_flags(const char **r_form, t_uck *s)
 		(**r_form == ' ') ? (s->space = 1) : 0;
 		(**r_form == '#') ? (s->has = 1) : 0;
 		(**r_form == '0') ? (s->ze = 1) : 0;
-		if (**r_form == 'h' && *(*r_form + 1) == 'h')
+		if (**r_form == 'h')
 		{
-			s->hh = 1;
-			*r_form += 1;
+			s->how++;
+			if (s->how % 2 != 0)
+				(s->h = 1);
+			else
+			{
+				s->hh = 1;
+				s->h = 0;
+			}
 		}
-		else if (**r_form == 'h')
-			(s->h = 1);
 		if (**r_form == 'l' && *(*r_form + 1) == 'l')
 		{
 			s->ll = 1;
 			*r_form += 1;
 		}
-		else if (**r_form == 'l')
-			(s->l = 1);
+		if (**r_form == 'l')
+		{
+			s->low++;
+			if (s->low % 2 != 0)
+				(s->l = 1);
+			else
+				s->ll = 1;
+		}
 		(**r_form == 'j') ? (s->j = 1) : 0;
 		(**r_form == 'z') ? (s->z = 1) : 0;
 		find_dominant(s);

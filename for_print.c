@@ -49,7 +49,7 @@ void	without_hyp_print(t_uck *s, const char **r)
 	s->count_1 += ft_strlen(s->str);
 	((s->str[0] == '\0') && (**r == 'c')) ? (s->count_1 += 1) : 0;
 	s->i_w -= s->count_1;
-	if ((((s->prec == 1) || (s->ze == 1)) && (s->width == 1) && (**r != 'p')) ||
+	if (((((s->prec == 1) && (s->i_p > s->count_1)) || (s->ze == 1)) && (s->width == 1) &&  (**r != 'p')) ||
 			((**r == 'p') && (s->prec == 0) && (s->width == 1) && s->hyphen))
 		(s->has == 1) ? if_hash(s, &(*r), 0) : 0;
 	((s->plus == 1) && (s->ze == 1)) ? if_plus(s, &(*r), 0) : 0;
@@ -61,7 +61,7 @@ void	without_hyp_print(t_uck *s, const char **r)
 		s->count += 1;
 	}
 	((s->plus == 1) && (s->ze == 0)) ? if_plus(s, &(*r), 0) : 0;
-	if (((s->prec == 0) || (**r == 'p')) && (s->has == 1))
+	if ((((s->prec == 0) || s->i_p <= s->count_1) || (**r == 'p')) && (s->has == 1))
 		if_hash(s, &(*r), 0);
 	if ((s->str[0] == '\0') && (**r == 'c'))
 	{
