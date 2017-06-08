@@ -115,7 +115,7 @@ int		ft_printf(const char *r_form, ...)
 	va_list	ap;
 	t_uck	s;
 
-	s.f = "#0+ hljz.*123456789";
+	s.f = "#0-+ hljz.*123456789";
 	s.tp = "sSpdDioOuUxXcC";
 	s.count = 0;
 	va_start(ap, r_form);
