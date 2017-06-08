@@ -104,7 +104,6 @@ void	lets_go(const char *r, va_list ap, t_uck *s)
 				check_flags(&r, s);
 				(ft_strchr(s->f, *r) && (*r != '*') && (*r != '.')) ? (r++) : 0;
 			}
-			s->hyphen = 0;
 			if (*r)
 				ft_strchr(s->tp, *r) ? (check_tp(&r, ap, s)) : p_t(s, &r);
 		}
@@ -116,7 +115,7 @@ int		ft_printf(const char *r_form, ...)
 	va_list	ap;
 	t_uck	s;
 
-	s.f = "#0-+ hljz.*123456789";
+	s.f = "#0+ hljz.*123456789";
 	s.tp = "sSpdDioOuUxXcC";
 	s.count = 0;
 	va_start(ap, r_form);
