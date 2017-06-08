@@ -36,6 +36,12 @@ void	print_x(va_list ap, t_uck *s, const char **r_f)
 		s->str[0] = '0';
 		s->str[1] = '\0';
 	}
+	if ((s->str[0] == '0') && (**r_f == 'p'))
+	{
+		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str[0] = '0';
+		s->str[1] = '\0';
+	}
 	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
 		ft_strclr(s->str);
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
