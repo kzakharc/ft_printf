@@ -6,7 +6,7 @@
 #    By: yzakharc <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/30 11:02:22 by yzakharc          #+#    #+#              #
-#    Updated: 2017/06/08 18:25:05 by kzakharc         ###   ########.fr        #
+#    Updated: 2017/06/08 18:22:19 by kzakharc         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,6 +30,7 @@ $(NAME) : $(OBJ)
 
 clean :
 	rm -rf *.o
+	rm -rf libft/get_next_line/*.o
 	rm -rf libft/*.o
 
 fclean: clean
