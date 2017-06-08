@@ -22,8 +22,9 @@ void	check_tp(const char **r, va_list ap, t_uck *s)
 	(**r == 'U') ? (print_bu(ap, s, &(*r))) : 0;
 	(**r == 'o') ? (print_o(ap, s, &(*r))) : 0;
 	(**r == 'O') ? (print_bo(ap, s, &(*r))) : 0;
-	((**r == 'c') && (s->l != 1)) ? (print_c(ap, s, &(*r))) : 0;
-	(((**r == 'c') && (s->l == 1)) || (**r == 'C')) ? (pr_bc(ap, s, &(*r))) : 0;
+	((**r == 'c') || (**r == 'C')) ? (print_c(ap, s, &(*r))) : 0;
+/*	((**r == 'c') && (s->l != 1)) ? (print_c(ap, s, &(*r))) : 0;
+	(((**r == 'c') && (s->l == 1)) || (**r == 'C')) ? (pr_bc(ap, s, &(*r))) : 0;*/
 	((**r == 's') && (s->l != 1)) ? (print_s(ap, s, &(*r))) : 0;
 	((**r == 'S') || ((**r == 's') && (s->l == 1))) ? (pr_bs(ap, s, &(*r))) : 0;
 	(**r == 'X') ? (print_bx(ap, s, &(*r))) : 0;
