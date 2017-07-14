@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 15:22:34 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/05/14 16:35:50 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/06/13 21:39:08 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,28 @@ void	check_tp(const char **r, va_list ap, t_uck *s)
 {
 	(**r == 'd' || **r == 'i') ? (print_d_i(ap, s, &(*r))) : 0;
 	(**r == 'D') ? (print_bd(ap, s, &(*r))) : 0;
-	((**r == 'u') && (s->l != 1)) ? (print_u(ap, s, &(*r))) : 0;
-	((**r == 'U') || ((**r == 'u') && (s->l == 1))) ? (print_bu(ap, s, &(*r))) : 0;
-	((**r == 'o') && (s->l != 1)) ? (print_o(ap, s, &(*r))) : 0;
-	((**r == 'O') || ((**r == 'o') && (s->l == 1))) ? (print_bo(ap, s, &(*r))) : 0;
+	(**r == 'u') ? (print_u(ap, s, &(*r))) : 0;
+	(**r == 'U') ? (print_bu(ap, s, &(*r))) : 0;
+	(**r == 'o') ? (print_o(ap, s, &(*r))) : 0;
+	(**r == 'O') ? (print_bo(ap, s, &(*r))) : 0;
 	((**r == 'c') && (s->l != 1)) ? (print_c(ap, s, &(*r))) : 0;
 	(((**r == 'c') && (s->l == 1)) || (**r == 'C')) ? (pr_bc(ap, s, &(*r))) : 0;
 	((**r == 's') && (s->l != 1)) ? (print_s(ap, s, &(*r))) : 0;
 	((**r == 'S') || ((**r == 's') && (s->l == 1))) ? (pr_bs(ap, s, &(*r))) : 0;
 	(**r == 'X') ? (print_bx(ap, s, &(*r))) : 0;
-	if (**r == 'p')
+	(**r == 'x') ? (print_x(ap, s, &(*r))) : 0;
+	(**r == 'n') ? (record_n(ap, s)) : 0;
+	(**r == 'b') ? (print_b(ap, s, &(*r))) : 0;
+	if ((**r == 'p') && (s->has = 1))
 	{
-		s->has = 1;
+		s->l = 1;
 		if ((s->ze == 1) && (s->width == 1))
 		{
 			if_hash(s, &(*r), 1);
 			if_hash(s, &(*r), 0);
 		}
-		s->l = 1;
 		print_x(ap, s, &(*r));
 	}
-	(**r == 'x') ? (print_x(ap, s, &(*r))) : 0;
 	(*r)++;
 }
 
@@ -46,11 +47,7 @@ void	check_flags(const char **r_form, t_uck *s)
 {
 	if (ft_strchr(s->f, **r_form))
 	{
-		(**r_form == '-') ? (s->hyphen = 1) : 0;
-		(**r_form == '+') ? (s->plus = 1) : 0;
-		(**r_form == ' ') ? (s->space = 1) : 0;
-		(**r_form == '#') ? (s->has = 1) : 0;
-		(**r_form == '0') ? (s->ze = 1) : 0;
+		check_flags_(r_form, s);
 		if (**r_form == 'h')
 		{
 			s->how++;
@@ -62,11 +59,6 @@ void	check_flags(const char **r_form, t_uck *s)
 				s->h = 0;
 			}
 		}
-		if (**r_form == 'l' && *(*r_form + 1) == 'l')
-		{
-			s->ll = 1;
-			*r_form += 1;
-		}
 		if (**r_form == 'l')
 		{
 			s->low++;
@@ -75,8 +67,6 @@ void	check_flags(const char **r_form, t_uck *s)
 			else
 				s->ll = 1;
 		}
-		(**r_form == 'j') ? (s->j = 1) : 0;
-		(**r_form == 'z') ? (s->z = 1) : 0;
 		find_dominant(s);
 	}
 }
@@ -116,7 +106,7 @@ int		ft_printf(const char *r_form, ...)
 	t_uck	s;
 
 	s.f = "#0-+ hljz.*123456789";
-	s.tp = "sSpdDioOuUxXcC";
+	s.tp = "sSpdDioOuUxXcCnb";
 	s.count = 0;
 	va_start(ap, r_form);
 	lets_go(r_form, ap, &s);

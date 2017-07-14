@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 17:34:53 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/05/14 16:46:02 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/06/13 21:43:02 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void	pr_bs(va_list ap, t_uck *s, const char **r_f)
 {
-	int *q;
-	int dummy;
-	char *d;
+	int		*q;
+	int		dummy;
+	char	*d;
 
 	s->w = 0;
 	dummy = 0;
@@ -102,7 +102,7 @@ void	find_little_dominant(t_uck *s)
 
 void	for_d(t_uck *s, const char **r_f)
 {
-	char *tmp;
+	char	*tmp;
 
 	if ((s->str[0] == '-') && ((s->ze == 1) || (s->prec == 1) ||
 				((s->width == 1) && (s->prec == 1))))

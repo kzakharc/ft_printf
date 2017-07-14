@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 17:50:02 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/05/14 16:45:28 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/06/14 19:17:00 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 
-void    if_hash(t_uck *s, const char **r_f, int i)
+void	if_hash(t_uck *s, const char **r_f, int i)
 {
 	if (i == 0)
 	{
@@ -64,7 +64,7 @@ void	if_space(t_uck *s, const char **r_f, int i)
 		s->count_1 += 1;
 }
 
-char    *get_memory(int size, t_uck *s, int i)
+char	*get_memory(int size, t_uck *s, int i)
 {
 	char *tmp;
 	char *dst;

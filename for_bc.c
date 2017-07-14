@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 15:31:32 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/06/01 15:31:34 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/06/14 19:16:32 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 void	pr_bc(va_list ap, t_uck *s, const char **r_f)
 {
-	int dummy;
-	int q;
-	char *d;
+	int		dummy;
+	int		q;
+	char	*d;
 
 	s->w = 0;
 	dummy = 0;
@@ -34,7 +34,7 @@ void	pr_bc(va_list ap, t_uck *s, const char **r_f)
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
 }
 
-void    get_big_c(int *q, t_uck *s, int dummy)
+void	get_big_c(int *q, t_uck *s, int dummy)
 {
 	if ((*q >= 0) && (*q < 128))
 		if_one(s, q);

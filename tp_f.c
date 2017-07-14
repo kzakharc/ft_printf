@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 20:22:24 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/05/14 16:44:43 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/06/14 19:15:29 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	print_o(va_list ap, t_uck *s, const char **r_f)
 {
 	s->plus = 0;
 	s->space = 0;
-	if ((s->hh == 1) || (s->h == 1) || (s->l == 1) || (s->ll == 1) ||
-			(s->j == 1) || (s->z == 1))
+	if ((s->hh) || (s->h) || (s->l) || (s->ll) || (s->j) || (s->z))
 	{
 		(s->hh == 1) ? (s->str = i((unsigned char)va_arg(ap, int), 8, 0)) : 0;
 		(s->h == 1) ? (s->str = i((unsigned short)va_arg(ap, int), 8, 0)) : 0;
@@ -77,19 +76,14 @@ void	print_o(va_list ap, t_uck *s, const char **r_f)
 	}
 	else
 		s->str = i((unsigned int)va_arg(ap, int), 8, 0);
-	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
-		ft_strclr(s->str);
+	((s->str[0] == '0') && (!(s->i_p) && s->prec == 1)) ? ft_strclr(s->str) : 0;
 	if ((s->str[0] == '0') && !(s->has = 0))
 	{
-		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str = ft_strnew(1);
 		s->str[0] = '0';
-		s->str[1] = '\0';
 	}
 	((s->prec == 1) && (s->i_p > 0)) ? (s->ze = 0) : 0;
-	if ((s->i_p <= (int)(ft_strlen(s->str) + 1)) && (s->has == 1))
-		(s->prec = 0);
-	else
-		(s->has = 0);
+	so_much(s);
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
 	s->str_clear == 1 ? 0 : free(s->str);
@@ -99,8 +93,7 @@ void	print_bo(va_list ap, t_uck *s, const char **r_f)
 {
 	s->plus = 0;
 	s->space = 0;
-	if ((s->hh == 1) || (s->h == 1) || (s->l == 1) || (s->ll == 1) ||
-			(s->j == 1) || (s->z == 1))
+	if ((s->hh) || (s->h) || (s->l) || (s->ll) || (s->j) || (s->z))
 	{
 		(s->hh == 1) ? (s->l = 1) : 0;
 		(s->h == 1) ? (s->l = 1) : 0;
@@ -111,19 +104,14 @@ void	print_bo(va_list ap, t_uck *s, const char **r_f)
 	}
 	else
 		s->str = i(va_arg(ap, unsigned long), 8, 0);
-	if ((s->str[0] == '0') && (!(s->i_p) && s->prec == 1))
-		ft_strclr(s->str);
+	((s->str[0] == '0') && (!(s->i_p) && s->prec == 1)) ? ft_strclr(s->str) : 0;
 	if ((s->str[0] == '0') && !(s->has = 0))
 	{
-		s->str = (char *)malloc(sizeof(char) * 2);
+		s->str = ft_strnew(1);
 		s->str[0] = '0';
-		s->str[1] = '\0';
 	}
 	((s->prec == 1) && (s->i_p > 0)) ? (s->ze = 0) : 0;
-	if ((s->i_p <= (int)(ft_strlen(s->str) + 1)) && (s->has == 1))
-		(s->prec = 0);
-	else
-		(s->has = 0);
+	so_much(s);
 	(s->prec == 1) ? (s->str = change_for_prec(s, 0)) : 0;
 	(s->width == 1) ? (print_w(s, &(*r_f))) : (print(s, &(*r_f)));
 }

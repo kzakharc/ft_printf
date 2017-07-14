@@ -6,7 +6,7 @@
 /*   By: kzakharc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 16:02:05 by kzakharc          #+#    #+#             */
-/*   Updated: 2017/05/14 16:38:25 by kzakharc         ###   ########.fr       */
+/*   Updated: 2017/06/14 19:13:48 by kzakharc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*change_for_prec_s(t_uck *s)
 
 	c = 0;
 	s->str_p = (char *)malloc(sizeof(char) * (s->i_p + 1));
-	if (s->i_p < (int) ft_strlen(s->str))
+	if (s->i_p < (int)ft_strlen(s->str))
 	{
 		while (c < s->i_p)
 		{
